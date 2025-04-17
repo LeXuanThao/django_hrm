@@ -19,5 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('employees.urls')),
+    path('api/employees/', include('employees.urls')),
+    # path('api/organizations/', include('organizations.urls')),
+    path('api/worktime/', include('worktime.urls')),
+    path('api/projects/', include('projects.urls')),  # Thêm URL cho app projects
 ]
