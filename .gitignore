@@ -1,0 +1,7 @@
+# sqlite
+*.sqlite3*
+
+# vendor & node_modules
+vendor/
+node_modules/
+__pycache__/
