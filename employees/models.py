@@ -38,6 +38,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class Employee(models.Model):
+    JOB_TITLE_CHOICES = [
+        ('STAFF', 'Staff'),
+        ('STAFF_MANAGER', 'Staff Manager'),
+        ('MANAGER', 'Manager'),
+    ]
+
     account = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='employee_profile')
     date_of_birth = models.DateField(null=True, blank=True)  # Ngày sinh
     hire_date = models.DateField(null=True, blank=True)  # Ngày vào làm
@@ -48,6 +54,20 @@ class Employee(models.Model):
         choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
         blank=True
     )  # Giới tính
+    job_title = models.CharField(
+        max_length=20,
+        choices=JOB_TITLE_CHOICES,
+        default='STAFF'
+    )  # Chức danh công việc
 
     def __str__(self):
-        return f"{self.account.first_name} {self.account.last_name}"
+        return f"{self.account.first_name} {self.account.last_name} - {self.job_title}"
+
+class EmployeeDocument(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='documents')
+    document_name = models.CharField(max_length=255)  # Tên tài liệu
+    document_file = models.FileField(upload_to='storage/employee_documents/')  # Thay đổi đường dẫn upload
+    uploaded_at = models.DateTimeField(auto_now_add=True)  # Thời gian tải lên
+
+    def __str__(self):
+        return f"{self.document_name} ({self.employee})"

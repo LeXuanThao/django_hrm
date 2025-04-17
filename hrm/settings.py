@@ -45,6 +45,8 @@ INSTALLED_APPS = [
 
     # Local installed apps
     'employees.apps.EmployeesConfig',
+    'organizations.apps.OrganizationsConfig',
+    'worktime.apps.WorktimeConfig',
 ]
 
 MIDDLEWARE = [

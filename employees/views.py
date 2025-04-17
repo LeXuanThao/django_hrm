@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Employee
-from .serializers import EmployeeSerializer
+from .models import Employee, EmployeeDocument
+from .serializers import EmployeeSerializer, EmployeeDocumentSerializer
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     """
@@ -8,3 +8,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     """
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class EmployeeDocumentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint cho phép quản lý tài liệu nhân sự.
+    """
+    queryset = EmployeeDocument.objects.all()
+    serializer_class = EmployeeDocumentSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employee, Account
+from .models import Employee, Account, EmployeeDocument
 
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +12,8 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = '__all__'  # Bao gồm tất cả các trường trong model Employee
+
+class EmployeeDocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmployeeDocument
+        fields = '__all__'  # Bao gồm tất cả các trường trong model EmployeeDocument
